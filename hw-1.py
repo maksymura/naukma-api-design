@@ -1,5 +1,6 @@
 import datetime as dt
 import json
+import os
 
 import requests
 from flask import Flask, jsonify, request
@@ -11,8 +12,7 @@ app = Flask(__name__)
 
 
 def get_weather(location, date):
-    # http://api.weatherapi.com/v1/future.json?key=0beb23878c0e46d7804164423231902&q=Kiev&dt=2023-03-21
-    url_base_url = "http://api.weatherapi.com/v1/future.json?key=0beb23878c0e46d7804164423231902"
+    url_base_url = f"http://api.weatherapi.com/v1/future.json?key={os.getenv('WEATHER_API_TOKEN')}"
 
     url = f"{url_base_url}&q={location}&dt={date}"
     print(url)
